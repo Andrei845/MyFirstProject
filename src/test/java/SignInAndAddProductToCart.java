@@ -41,9 +41,9 @@ public class SignInAndAddProductToCart implements Utils {
         Thread.sleep(2000);
         Utils.scroll(driver, cartPage.getCheckoutButton());
         cartPage.clickCheckoutButton();
-        checkOutPage.clickMyAccountRadioBox();
-        checkOutPage.getAccountQualificationLabel();
-        System.out.println("just to test git!");
+//         checkOutPage.clickMyAccountRadioBox();
+//         checkOutPage.getAccountQualificationLabel();
+
 
     }
 
