@@ -43,6 +43,7 @@ public class SignInAndAddProductToCart implements Utils {
         cartPage.clickCheckoutButton();
         checkOutPage.clickMyAccountRadioBox();
         checkOutPage.getAccountQualificationLabel();
+        System.out.println("just to test git!");
 
     }
 
