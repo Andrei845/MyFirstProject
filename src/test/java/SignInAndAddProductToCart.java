@@ -1,9 +1,6 @@
 import core.Utils;
-import org.junit.After;
+import org.junit.*;
 import pages.*;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -41,10 +38,14 @@ public class SignInAndAddProductToCart implements Utils {
         Thread.sleep(2000);
         Utils.scroll(driver, cartPage.getCheckoutButton());
         cartPage.clickCheckoutButton();
-//       checkOutPage.clickMyAccountRadioBox();
-//       checkOutPage.getAccountQualificationLabel();
-        System.out.println("Another try");
-        System.out.println("Another line");
+        Thread.sleep(2000);
+        Utils.scroll(driver, checkOutPage.getMyAccountRadioBox());
+        checkOutPage.clickMyAccountRadioBox();
+        Thread.sleep(1000);
+        Utils.scroll(driver, checkOutPage.getChooseQualifiedUserLabel());
+        Thread.sleep(5000);
+        Assert.assertTrue("The message displayed is not appropriate for the account and the product(s) in the cart", checkOutPage.isAppropriateMessageDisplayedForQualifications());
+
     }
 
     @After
