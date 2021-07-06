@@ -4,12 +4,13 @@ import pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SignInAndAddProductToCart implements Utils {
+public class SignInAndAddProductToCartWithAppropriateQualificationLevel implements Utils {
+
     static WebDriver driver = new ChromeDriver();
     SignInPage signInPage = new SignInPage(driver);
     StorePage storePage = new StorePage(driver);
     CartPage cartPage = new CartPage(driver);
-    CheckOutPage checkOutPage = new CheckOutPage(driver);
+    AccountsForCheckoutPage accountsForCheckoutPage = new AccountsForCheckoutPage(driver);
     AdaptiveBehaviorAssessmentSystemPage programPage = new AdaptiveBehaviorAssessmentSystemPage(driver);
 
     @BeforeClass
@@ -39,12 +40,14 @@ public class SignInAndAddProductToCart implements Utils {
         Utils.scroll(driver, cartPage.getCheckoutButton());
         cartPage.clickCheckoutButton();
         Thread.sleep(2000);
-        Utils.scroll(driver, checkOutPage.getMyAccountRadioBox());
-        checkOutPage.clickMyAccountRadioBox();
+        Utils.scroll(driver, accountsForCheckoutPage.getMyAccountRadioBox());
+        accountsForCheckoutPage.clickMyAccountRadioBox();
         Thread.sleep(1000);
-        Utils.scroll(driver, checkOutPage.getChooseQualifiedUserLabel());
+        Utils.scroll(driver, accountsForCheckoutPage.getChooseQualifiedUserLabel());
         Thread.sleep(5000);
-        Assert.assertTrue("The message displayed is not appropriate for the account and the product(s) in the cart", checkOutPage.isAppropriateMessageDisplayedForQualifications());
+        Assert.assertEquals("This account is allowed to buy products at this level", accountsForCheckoutPage.getAccountAllowedToBuyParagraph());
+        Assert.assertTrue("The account is not qualified to buy products", accountsForCheckoutPage.isAccountQualifiedForProducts());
+        accountsForCheckoutPage.clickContinueButton();
 
     }
 

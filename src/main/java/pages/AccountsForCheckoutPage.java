@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CheckOutPage extends PageObject {
+public class AccountsForCheckoutPage extends PageObject {
 
     @FindBy(xpath = "//div[@class='js-personalQualifiedUserStep']//span[contains(@class, 'js-cartQualificationLevel')]")
     private WebElement itemsInCartQualificationLabel;
@@ -25,7 +25,10 @@ public class CheckOutPage extends PageObject {
     @FindBy(xpath = "//div[@class= 'js-cartQualificationMatched']//p[@class = 'c-alert__text']")
     private WebElement accountAllowedToBuyParagraph;
 
-    public CheckOutPage(WebDriver driver) {
+    @FindBy(xpath = "//div[@id = 'digitalAccountFormSubmitID']/button[@type = 'submit']")
+    private WebElement continueButton;
+
+    public AccountsForCheckoutPage(WebDriver driver) {
         super(driver);
     }
 
@@ -62,25 +65,22 @@ public class CheckOutPage extends PageObject {
             isLinkDisplayed = increaseQualificationLevelLink.isDisplayed();
         } catch (NoSuchElementException ex){
             ex.getStackTrace();
-        } finally {
+        }
             return isLinkDisplayed;
-        }
+
     }
 
-    public boolean isAccountAllowedToBuyParagraphDisplayed() {
-        boolean isParagraphDisplayed = false;
-        try {
-            isParagraphDisplayed = accountAllowedToBuyParagraph.isDisplayed();
-        } catch (NoSuchElementException ex){
-            ex.getStackTrace();
-        } finally {
-            return isParagraphDisplayed;
-        }
+    public String getAccountAllowedToBuyParagraph(){
+       return accountAllowedToBuyParagraph.getText();
+    }
+
+    public String getIncreaseQualificationLevelLink(){
+        return increaseQualificationLevelLink.getText();
     }
 
 
-    private boolean isAccountQualifiedForProducts() {
-        boolean isQualified = false;
+    public boolean isAccountQualifiedForProducts() {
+        boolean isQualified;
         if ((this.getAccountQualificationLabel().compareTo(this.getItemsInCartQualificationLabel())) >= 0) {
             isQualified = true;
         } else {
@@ -90,19 +90,8 @@ public class CheckOutPage extends PageObject {
     }
 
 
-    public boolean isAppropriateMessageDisplayedForQualifications() {
-        boolean isMessageAppropriate = false;
-        if (this.isAccountQualifiedForProducts() == this.isAccountAllowedToBuyParagraphDisplayed() &&
-                this.isAccountQualifiedForProducts() != this.isIncreaseQualificationLevelLinkDisplayed())
-        {
-            isMessageAppropriate = true;
-        } else if (this.isAccountQualifiedForProducts() != this.isAccountAllowedToBuyParagraphDisplayed() &&
-                this.isAccountQualifiedForProducts() == this.isIncreaseQualificationLevelLinkDisplayed())
-        {
-            isMessageAppropriate = true;
-        } else {
-            isMessageAppropriate = false;
-        }
-        return isMessageAppropriate;
+    public void clickContinueButton(){
+        continueButton.click();
     }
+
 }
