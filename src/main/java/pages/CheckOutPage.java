@@ -26,9 +26,10 @@ public class CheckOutPage extends PageObject{
         return itemsInCartQualificationLabel.getText().toCharArray();
     }
 
-    public char[] getAccountQualificationLabel(){
+    public String getAccountQualificationLabel(){
         System.out.println(accountQualificationLabel.getText());
-        return accountQualificationLabel.getText().toCharArray();
+//        return accountQualificationLabel.getText().toCharArray();
+        return null;
     }
 
 }
