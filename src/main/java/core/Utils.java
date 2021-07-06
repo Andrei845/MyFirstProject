@@ -14,7 +14,4 @@ public interface Utils {
                 ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
         }
 
-        static void instantiatePages(Object obj){
-                WebDriver driver = new ChromeDriver();
-        }
 }
