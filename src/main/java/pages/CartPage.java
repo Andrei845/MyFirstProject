@@ -1,5 +1,7 @@
 package pages;
 
+import core.PageObject;
+import core.Scroller;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,10 +32,8 @@ public class CartPage extends PageObject {
     }
 
     public void clickCheckoutButton(){
+        Scroller.scroll(driver, checkoutButton);
         checkoutButton.click();
     }
 
-    public WebElement getCheckoutButton(){
-        return checkoutButton;
-    }
 }

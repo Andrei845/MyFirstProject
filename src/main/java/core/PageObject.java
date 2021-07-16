@@ -1,4 +1,4 @@
-package pages;
+package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -11,4 +11,5 @@ public class PageObject {
             PageFactory.initElements(driver, this);
 
         }
+
 }

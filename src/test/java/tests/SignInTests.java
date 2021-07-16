@@ -1,3 +1,5 @@
+package tests;
+
 import core.Utils;
 import pages.SignInPage;
 import org.junit.*;
@@ -11,15 +13,15 @@ public class SignInTests implements Utils {
     SignInPage signInPage = new SignInPage(driver);
 
     @Before
-    public void loadPage(){
+    public void loadPageAndClosePopUps(){
         driver.get(SIGN_IN_URL);
         driver.manage().window().maximize();
+        signInPage.clickClosePopUp();
+        signInPage.clickClosePopUpOurStores();
     }
 
     @Test
     public void checkIfElementsAreDisplayed(){
-        signInPage.clickClosePopUp();
-        signInPage.clickClosePopUpOurStores();
         Assert.assertTrue("Store link is not displayed", signInPage.isStoreLinkDisplayed());
         Assert.assertTrue("Breadcrumb link is not displayed", signInPage.isSignInBreadcrumbDisplayed());
         signInPage.clickOnPearsonLogo();
@@ -27,8 +29,6 @@ public class SignInTests implements Utils {
 
     @Test
     public void signIn(){
-        signInPage.clickClosePopUp();
-        signInPage.clickClosePopUpOurStores();
         signInPage.enterUsername(USERNAME);
         signInPage.enterCurrentPassword(CURRENT_PASSWORD);
         signInPage.clickSignInButton();

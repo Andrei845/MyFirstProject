@@ -1,6 +1,7 @@
 package pages;
 
-import org.openqa.selenium.NoSuchElementException;
+import core.PageObject;
+import core.Scroller;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,70 +28,20 @@ public class AccountsForCheckoutPage extends PageObject {
 
     @FindBy(xpath = "//div[@id = 'digitalAccountFormSubmitID']/button[@type = 'submit']")
     private WebElement continueButton;
-
+    
     public AccountsForCheckoutPage(WebDriver driver) {
+
         super(driver);
     }
 
     public void clickMyAccountRadioBox() {
+
         myAccountRadioBox.click();
     }
-
-    public WebElement getMyAccountRadioBox() {
-        return myAccountRadioBox;
-    }
-
-    public String getItemsInCartQualificationLabel() {
-
-        return itemsInCartQualificationLabel.getText();
-    }
-
-    public String getItemsInTheCartQualificationLevel() {
-        return itemsInCartQualificationLabel.getText();
-    }
-
-    public String getAccountQualificationLabel() {
-
-        return accountQualificationLabel.getText();
-    }
-
-    public WebElement getChooseQualifiedUserLabel() {
-
-        return chooseQualifiedUserLabel;
-    }
-
-    private boolean isIncreaseQualificationLevelLinkDisplayed() {
-        boolean isLinkDisplayed = false;
-        try {
-            isLinkDisplayed = increaseQualificationLevelLink.isDisplayed();
-        } catch (NoSuchElementException ex){
-            ex.getStackTrace();
-        }
-            return isLinkDisplayed;
-
-    }
-
-    public String getAccountAllowedToBuyParagraph(){
-       return accountAllowedToBuyParagraph.getText();
-    }
-
-    public String getIncreaseQualificationLevelLink(){
-        return increaseQualificationLevelLink.getText();
-    }
-
-
-    public boolean isAccountQualifiedForProducts() {
-        boolean isQualified;
-        if ((this.getAccountQualificationLabel().compareTo(this.getItemsInCartQualificationLabel())) >= 0) {
-            isQualified = true;
-        } else {
-            isQualified = false;
-        }
-        return isQualified;
-    }
-
-
+    
     public void clickContinueButton(){
+
+        Scroller.scroll(driver, continueButton);
         continueButton.click();
     }
 

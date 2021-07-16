@@ -1,9 +1,9 @@
 package pages;
 
+import core.PageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import sun.awt.windows.WBufferStrategy;
 
 public class StorePage extends PageObject {
 
@@ -29,35 +29,12 @@ public class StorePage extends PageObject {
             "/following-sibling::span")
     private WebElement SpanNumberOfProductsInAcademicLearningCategory;
 
-    @FindBy(xpath = "//form[@id = 'addToCartForm0158009150']/button[@type = 'submit']")
-    private WebElement addToCartFirstProduct;
-
-    @FindBy(xpath = "//form[@id = 'addToCartForm0158009231']/button[@type='submit']")
-    private WebElement addToCartpenultimateButton;
-
-    @FindBy(xpath = "//div[@id = 'cboxContent']/button[@id = 'cboxClose']")
-    private WebElement popUpAddToCartCloser;
-
     public StorePage(WebDriver driver) {
         super(driver);
     }
 
     public void clickAbas3ProgramLink() {
         abas3ProgramLink.click();
-    }
-
-    public void clickAddToCartFirstProduct() {
-        addToCartFirstProduct.click();
-    }
-
-    public void clickPopUpAddToCartCloser(){ popUpAddToCartCloser.click();}
-
-    public WebElement getAddToCartpenultimateButton(){
-        return addToCartpenultimateButton;
-    }
-
-    public void clickAddToCartPenultimateProduct(){
-        addToCartpenultimateButton.click();
     }
 
 

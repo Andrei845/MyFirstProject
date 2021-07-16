@@ -1,12 +1,15 @@
 package pages;
 
+import core.PageObject;
+import core.Scroller;
+import core.WaitUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AdaptiveBehaviorAssessmentSystemPage extends PageObject{
+public class AdaptiveBehaviorAssessmentSystemPage extends PageObject {
 
-    public AdaptiveBehaviorAssessmentSystemPage(WebDriver driver){
+    public AdaptiveBehaviorAssessmentSystemPage(WebDriver driver) {
         super(driver);
     }
 
@@ -16,15 +19,50 @@ public class AdaptiveBehaviorAssessmentSystemPage extends PageObject{
     @FindBy(xpath = "//div[@class = 'c-modal-actions']/a[@href='/store/usassessments/en/cart']")
     private WebElement viewCartButton;
 
-    public WebElement getAllProductsFormatCard(){
-        return allProductsFormatCard;
-    }
+    @FindBy(xpath = "//div[@id = 'colorbox']")
+    private WebElement addToCartPopUp;
 
-    public void clickAllProductsFormatCard(){
+    @FindBy(xpath = "//form[@id = 'addToCartForm0158009150']/button[@type = 'submit']")
+    private WebElement addToCartFirstProduct;
+
+    @FindBy(xpath = "//form[@id = 'addToCartForm0158009231']/button[@type='submit']")
+    private WebElement addToCartpenultimateButton;
+
+    @FindBy(xpath = "//div[@id = 'cboxContent']/button[@id = 'cboxClose']")
+    private WebElement popUpAddToCartCloser;
+
+    public void clickAllProductsFormatCard() {
+
         allProductsFormatCard.click();
     }
 
     public void clickViewCartButton() {
+
         viewCartButton.click();
+    }
+
+    public boolean isAddToCartPopUpDisplayed() {
+        WaitUtils.waitUntilElementIsDisplayed(addToCartPopUp);
+        return addToCartPopUp.isDisplayed();
+    }
+
+    public boolean addToCartPopUpWasClosed() {
+        WaitUtils.waitUntilElementIsNotDisplayed(addToCartPopUp);
+        return !addToCartPopUp.isDisplayed();
+    }
+
+    public void clickAddToCartFirstProduct() {
+
+        addToCartFirstProduct.click();
+    }
+
+    public void clickPopUpAddToCartCloser() {
+
+        popUpAddToCartCloser.click();
+    }
+
+    public void clickAddToCartPenultimateProduct() {
+        Scroller.scroll(driver, addToCartpenultimateButton);
+        addToCartpenultimateButton.click();
     }
 }
