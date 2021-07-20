@@ -5,8 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class StorePage extends PageObject {
 
+    @FindBy(xpath = "//li[@class = 'product__list--item']")
+    private List<StoreProgramFragment> storeProgramFragmentList;
 
     @FindBy(xpath = "//div[@class= 'pagination-bar-results']/span")
     private WebElement numberOfItemsFoundInStoreSpan;
@@ -35,6 +39,32 @@ public class StorePage extends PageObject {
 
     public void clickAbas3ProgramLink() {
         abas3ProgramLink.click();
+    }
+
+    private StoreProgramFragment getProgramFragmentByTitle(String title){
+        System.out.println("driver = "+driver);
+        System.out.println("storeProgramFragmentList = "+storeProgramFragmentList);
+        return storeProgramFragmentList
+                .stream()
+                .filter(iterator -> iterator.getTitle().getText().trim().equals(title))
+                .findFirst()
+                .orElseThrow (() -> new IllegalStateException("Program with the title "+title+" was not found"));
+
+    }
+
+//    private WebElement getProgramFragmentByTitle(String title){
+//        System.out.println("driver = "+driver);
+//        System.out.println("storeProgramFragmentList = "+storeProgramFragmentList);
+//        return storeProgramFragmentList
+//                .stream()
+//                .filter(iterator -> iterator.getText().trim().equals(title))
+//                .findFirst()
+//                .orElseThrow (() -> new IllegalStateException("Program with the title "+title+" was not found"));
+//
+//    }
+    public void clickOnTheProgram(String title){
+//        WaitUtils.waitUntilElementIsDisplayed(getProgramFragmentByTitle(title).getTitle());
+       getProgramFragmentByTitle(title).click();
     }
 
 

@@ -1,7 +1,7 @@
 package pages;
 
 import core.PageObject;
-import core.Scroller;
+import core.ScrollerAndClicker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,8 +41,7 @@ public class AccountsForCheckoutPage extends PageObject {
     
     public void clickContinueButton(){
 
-        Scroller.scroll(driver, continueButton);
-        continueButton.click();
+        ScrollerAndClicker.scrollAndClick(continueButton);
     }
 
 }

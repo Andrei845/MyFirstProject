@@ -1,13 +1,15 @@
 package pages;
 
 import core.PageObject;
+import core.WaitUtils;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static core.Utils.SIGN_IN_URL;
+import static core.Utils.SIGN_IN_REGISTER_URL;
 
-public class SignInPage extends PageObject {
+public class SignInRegisterPage extends PageObject {
 
     @FindBy(xpath = "//div[@class = 'nav__right utility-nav--container']//a[@title = 'Store']")
     private WebElement storeLinkHeader;
@@ -51,12 +53,17 @@ public class SignInPage extends PageObject {
     @FindBy(xpath = "//button[@class='pop-up-close']")
     private WebElement closePopUpOurStores;
 
-    public SignInPage(WebDriver driver) {
+    public SignInRegisterPage(WebDriver driver) {
         super(driver);
     }
 
     public void openPage(WebDriver driver){
-        driver.get(SIGN_IN_URL);
+        driver.get(SIGN_IN_REGISTER_URL);
+    }
+
+    public void checkIfPageIsLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on the Sign in/Register page", SIGN_IN_REGISTER_URL, driver.getCurrentUrl());
     }
 
     public boolean isStoreLinkDisplayed() {
@@ -89,10 +96,6 @@ public class SignInPage extends PageObject {
 
     public void clickSignInButton() {
         signInButton.click();
-    }
-
-    public void checkRememberMeCheckbox() {
-        checkBoxRememberMe.click();
     }
 
 }

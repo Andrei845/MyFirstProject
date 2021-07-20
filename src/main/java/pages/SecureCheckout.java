@@ -2,7 +2,7 @@ package pages;
 
 import core.ClickWithJavaScript;
 import core.PageObject;
-import core.Scroller;
+import core.ScrollerAndClicker;
 import core.WaitUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +19,7 @@ public class SecureCheckout extends PageObject {
     private WebElement addNewAddressRadioButton;
 
     @FindBy(xpath = "//div[@class = 'c-select-wrapper']/select[@id = 'address.country']")
-    private Select countryDropdown;
+    private WebElement countryDropdown;
 
     @FindBy(xpath = "//div[@class = 'c-select-wrapper']//option[@value = 'AR']")
     private WebElement optionFromCountryDropdown;
@@ -48,6 +48,9 @@ public class SecureCheckout extends PageObject {
     @FindBy(xpath = "//input[@id ='address.townCity']")
     private WebElement cityInputField;
 
+    @FindBy(xpath = "//div[@class = 'c-select-wrapper']/select[@id = 'address.region']")
+    private WebElement stateProvinceDropdown;
+
     @FindBy(xpath = "//input[@id ='address.postcode']")
     private WebElement zipCodeInputField;
 
@@ -63,11 +66,11 @@ public class SecureCheckout extends PageObject {
     @FindBy(xpath = "//button[@id = 'addressSubmit']")
     private WebElement nextButtonFromShippingAddress;
 
-    @FindBy(xpath = "//div[@class = 'c-select-wrapper']/select[@id = 'address.region']")
-    private WebElement stateProvinceDropdown;
-
-    @FindBy(xpath = "//option[@value = 'US-AL']")
+    @FindBy(xpath = "//option[@value = 'US-WA']")
     private WebElement optionFromStateProvinceDropdown;
+
+    @FindBy(xpath = "//option[@value = 'AW']")
+    private WebElement arubaOption;
 
     @FindBy(xpath = "//div[@class = 'control c-select-wrapper']//select[@id = 'delivery_method']")
     private WebElement shippingMethodDropdown;
@@ -116,19 +119,17 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickAddNewAddress() {
-        Scroller.scroll(driver, addNewAddressRadioButton);
-        addNewAddressRadioButton.click();
-    }
-
-    public void clickOnCountryDropdown() {
-        countryDropdown.click();
+        ScrollerAndClicker.scrollAndClick(addNewAddressRadioButton);
     }
 
     public void clickOptionFromCountryDropdown(String country){
-        countryDropdown.selectByVisibleText(country);
-        WaitUtils.waitUntilElementIsDisplayed(optionFromCountryDropdown);
-        optionFromCountryDropdown.click();
+        Select countryDrop = new Select(countryDropdown);
+//        arubaOption.click();
+        countryDrop.selectByVisibleText(country);
+    }
 
+    public void waitFormToBeRefreshed(){
+        WaitUtils.waitUntilRefreshed(addressForm);
     }
 
     public void clickTitleDropdown() {
@@ -144,18 +145,12 @@ public class SecureCheckout extends PageObject {
         if(firstNameInputField.getText().equals(firstName)) return;
         firstNameInputField.click();
         firstNameInputField.clear();
-        typeIfInputFirstNameHasAnError(firstName);
+        firstNameInputField.sendKeys(firstName);
     }
-
-    private void typeIfInputFirstNameHasAnError(String firstNameError){
-        firstNameErrorInputField.sendKeys(firstNameError);
-    }
-
 
     public void typeLastName(String lastName) {
         if(lastNameInputField.getText().equals(lastName)) return;
         lastNameInputField.click();
-        lastNameInputField.clear();
         lastNameInputField.clear();
         lastNameInputField.sendKeys(lastName);
     }
@@ -175,16 +170,13 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickCityInputFieldAndType(String cityName) {
-        Scroller.scroll(driver, cityInputField);
+        ScrollerAndClicker.scrollAndClick(cityInputField);
         if(cityInputField.getText().equals(cityName))return;
-        cityInputField.click();
         cityInputField.clear();
         cityInputField.sendKeys(cityName);
     }
 
-    public void chooseOptionFromStateProvinceDropdown(){
-        stateProvinceDropdown.click();
-        WaitUtils.waitUntilElementIsDisplayed(optionFromStateProvinceDropdown);
+    public void chooseWashingtonFromStateProvinceDropdown(){
         optionFromStateProvinceDropdown.click();
     }
 
@@ -195,24 +187,17 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickEmailAddressInputFieldAndType(String email) {
-        Scroller.scroll(driver, emailAddressInputField);
-        emailAddressInputField.click();
+        ScrollerAndClicker.scrollAndClick(emailAddressInputField);
         emailAddressInputField.sendKeys(email);
     }
 
     public void clickPhoneNumberInputFieldAndType(String phone) {
-        Scroller.scroll(driver, phoneNumberInputField);
-        phoneNumberInputField.click();
+        ScrollerAndClicker.scrollAndClick(phoneNumberInputField);
         phoneNumberInputField.sendKeys(phone);
     }
 
-    public void clickSaveShippingAddressCheckbox() {
-        saveShippingAddressCheckbox.click();
-    }
-
     public void clickNextButtonFromShippingAddress() {
-        Scroller.scroll(driver, nextButtonFromShippingAddress);
-        nextButtonFromShippingAddress.click();
+        ScrollerAndClicker.scrollAndClick(nextButtonFromShippingAddress);
     }
 
     public void clickNextButtonFromShippingMethod() {
@@ -262,7 +247,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public boolean isClickablePlaceOrderButton() {
-        Scroller.scroll(driver, placeOrderButton);
+        ScrollerAndClicker.scrollToElement(placeOrderButton);
         WaitUtils.waitUntilElementIsClickable(placeOrderButton);
         return placeOrderButton.isEnabled();
     }

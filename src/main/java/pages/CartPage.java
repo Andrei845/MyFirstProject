@@ -1,7 +1,7 @@
 package pages;
 
 import core.PageObject;
-import core.Scroller;
+import core.ScrollerAndClicker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +20,6 @@ public class CartPage extends PageObject {
     @FindBy(xpath = "//div[@class = 'js-cart-totals row']/div[@class = 'col-xs-4 col-md-6 cart-totals-right text-right']")
     private WebElement estimatedOrderTotal;
 
-
     @FindBy(xpath = "//div[@class = 'js-cart-totals row']/div[@class = 'col-xs-5 col-md-6 cart-totals-right text-right grand-total js-total-price']")
     private WebElement grandTotal;
 
@@ -32,8 +31,7 @@ public class CartPage extends PageObject {
     }
 
     public void clickCheckoutButton(){
-        Scroller.scroll(driver, checkoutButton);
-        checkoutButton.click();
+        ScrollerAndClicker.scrollAndClick(checkoutButton);
     }
 
 }

@@ -1,8 +1,9 @@
 package pages;
 
 import core.PageObject;
-import core.Scroller;
+import core.ScrollerAndClicker;
 import core.WaitUtils;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,9 @@ public class AdaptiveBehaviorAssessmentSystemPage extends PageObject {
     public AdaptiveBehaviorAssessmentSystemPage(WebDriver driver) {
         super(driver);
     }
+
+    @FindBy(xpath = "//div[@id = 'mcxContainer']//a[@id = 'declineSurvey']")
+    private WebElement feedbackPopUpCloser;
 
     @FindBy(xpath = "//li[@class = 'preferred-format__card']/button[@value = 'ALL_PRODUCTS']")
     private WebElement allProductsFormatCard;
@@ -62,7 +66,13 @@ public class AdaptiveBehaviorAssessmentSystemPage extends PageObject {
     }
 
     public void clickAddToCartPenultimateProduct() {
-        Scroller.scroll(driver, addToCartpenultimateButton);
-        addToCartpenultimateButton.click();
+        ScrollerAndClicker.scrollAndClick(addToCartpenultimateButton);
+    }
+
+    public void clickFeedbackPopUpCloser(){
+        try {
+            WaitUtils.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
+            feedbackPopUpCloser.click();
+        } catch (TimeoutException ignored){ }
     }
 }

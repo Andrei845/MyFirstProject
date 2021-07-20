@@ -2,6 +2,7 @@ package StepsDef;
 
 import core.DriverInitiator;
 import core.WaitUtils;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -13,11 +14,16 @@ public class AdaptiveBehaviorAssessmentSystemPageStepDef {
     WebDriver driver = DriverInitiator.instantiateDriver();
     AdaptiveBehaviorAssessmentSystemPage abas = new AdaptiveBehaviorAssessmentSystemPage(driver);
 
-    @Then("The program page is displayed")
+    @Then("^The program page is displayed$")
     public void theProgramPageIsDisplayed() {
         WaitUtils.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the program page ABAS3","https://www.pearsonassessments.com/store/usassessments/en/Store/Professional-Assessments/Behavior/Brief/" +
                 "Adaptive-Behavior-Assessment-System-%7C-Third-Edition/p/100001262.html", driver.getCurrentUrl());
+    }
+
+    @And("^User closes the feedback pop-up$")
+    public void userClosesTheFeedbackPopUp(){
+        abas.clickFeedbackPopUpCloser();
     }
 
     @When("User adds a product in the cart")

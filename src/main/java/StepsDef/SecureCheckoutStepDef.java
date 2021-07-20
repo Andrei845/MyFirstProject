@@ -31,11 +31,10 @@ public class SecureCheckoutStepDef {
     }
 
 
-    @And("User clicks on \"(.*)\" from Country dropdown")
+    @And("^User clicks on \"(.*)\" from Country dropdown$")
     public void userClicksOnArgentinaFromCountryDropdown(String country){
         secureCheckout.clickOptionFromCountryDropdown(country);
-        secureCheckout.waitAddressFormToBeDisplayed();
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        secureCheckout.waitFormToBeRefreshed();
     }
 
     @And("User clicks on the dropdown Title\\(optional)")
@@ -70,7 +69,7 @@ public class SecureCheckoutStepDef {
 
     @And("^User chooses an option from State\\/Province dropdown$")
     public void userChoosesAnOptionFromStateProvinceDropdown() {
-        secureCheckout.chooseOptionFromStateProvinceDropdown();
+        secureCheckout.chooseWashingtonFromStateProvinceDropdown();
     }
 
     @And("^User types \"(.*)\" in the Postal Code input field$")
