@@ -1,10 +1,8 @@
 package StepsDef;
 
 import core.DriverInitiator;
-import core.WaitUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.AddressBook;
 
@@ -15,13 +13,11 @@ public class AddressBookStepDef {
 
     @Then("^Address book page is loaded$")
     public void checkIfAddressBookPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
-        Assert.assertEquals("You are not on the address book page","https://www.pearsonassessments.com/store/usassessments/en/my-account/address-book", driver.getCurrentUrl());
-
+        addressBook.waitAndCheckIfPageIsLoaded();
     }
 
-    @And("^User deletes any addresses present here, if any$")
-    public void closePresentAddressesIfAny(){
+    @And("^User deletes all the addresses displayed on the page$")
+    public void removeDisplayedAddresses(){
         addressBook.deleteAllTheAddresses();
         addressBook.clickOnFeedBackPopUpCloser();
     }

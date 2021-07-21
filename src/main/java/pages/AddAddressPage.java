@@ -3,11 +3,14 @@ package pages;
 import core.DriverInitiator;
 import core.PageObject;
 import core.WaitUtils;
+import org.junit.Assert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+
+import static core.Utils.ADD_ADDRESS_PAGE_URL;
 
 public class AddAddressPage extends PageObject {
     WebDriver driver = DriverInitiator.instantiateDriver();
@@ -57,6 +60,11 @@ public class AddAddressPage extends PageObject {
 
     @FindBy(xpath = "//div[@class = 'col-sm-6 col-sm-push-6']/button")
     private WebElement saveButton;
+
+    public void waitAndCheckIfPageIsLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on the page Add Address!", ADD_ADDRESS_PAGE_URL, driver.getCurrentUrl());
+    }
 
     public boolean isFormShippingAddressDisplayed() {
         WaitUtils.waitUntilElementIsDisplayed(formShippingAddress);

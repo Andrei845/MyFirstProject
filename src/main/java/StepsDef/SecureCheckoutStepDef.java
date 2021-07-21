@@ -20,6 +20,16 @@ public class SecureCheckoutStepDef {
         Assert.assertEquals("You are not on the secure checkout page","https://www.pearsonassessments.com/store/usassessments/en/checkout/multi/delivery-address/add", driver.getCurrentUrl());
     }
 
+    @And("^User types \"(.*)\" in the search input field$")
+    public void userTypesInTheSearchInputField(String address){
+        secureCheckout.typeInSearchAddressInputField(address);
+    }
+
+    @And("^User chooses from the results the address that matches \"(.*)\"$")
+    public void userChoosesFromTheResultTheAccordingAddress(String address){
+        secureCheckout.chooseTheAccordingAddress(address);
+    }
+
     @When("User clicks on the Add a new address radio button")
     public void clickOnTheRadioButtonAddNewAddress() {
         secureCheckout.clickAddNewAddress();
@@ -88,8 +98,7 @@ public class SecureCheckoutStepDef {
     }
 
     @And("User clicks on Next button from the form addressForm")
-    public void userClicksOnNextButtonFromTheFormAddressForm() throws InterruptedException {
-        Thread.sleep(5000);
+    public void userClicksOnNextButtonFromTheFormAddressForm() {
         secureCheckout.clickNextButtonFromShippingAddress();
     }
 
@@ -121,4 +130,8 @@ public class SecureCheckoutStepDef {
         Assert.assertTrue("The button is not enabled",secureCheckout.isClickablePlaceOrderButton());
     }
 
+    @When("User clicks on button Back to cart")
+    public void userClicksOnButtonBackToCart() {
+        secureCheckout.clickBackToCartButton();
+    }
 }

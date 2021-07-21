@@ -42,6 +42,15 @@ public class HomePage extends PageObject {
         WaitUtils.waitUntilPageIsLoaded(driver);
     }
 
+    public void waitAndCheckIfPageIsLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on Home page!",HOME_PAGE_URL, driver.getCurrentUrl());
+    }
+
+    public void maximizeWindow(){
+        driver.manage().window().maximize();
+    }
+
     public void closePopUps(){
         closePopUpOurStores.click();
         cookiesAcceptLink.click();

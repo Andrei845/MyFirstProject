@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static core.Utils.SIGN_IN_REGISTER_URL;
+import static core.Utils.SIGN_IN_REGISTER_PAGE_URL;
 
 public class SignInRegisterPage extends PageObject {
 
@@ -58,12 +58,12 @@ public class SignInRegisterPage extends PageObject {
     }
 
     public void openPage(WebDriver driver){
-        driver.get(SIGN_IN_REGISTER_URL);
+        driver.get(SIGN_IN_REGISTER_PAGE_URL);
     }
 
     public void checkIfPageIsLoaded(){
         WaitUtils.waitUntilPageIsLoaded(driver);
-        Assert.assertEquals("You are not on the Sign in/Register page", SIGN_IN_REGISTER_URL, driver.getCurrentUrl());
+        Assert.assertEquals("You are not on the Sign in/Register page", SIGN_IN_REGISTER_PAGE_URL, driver.getCurrentUrl());
     }
 
     public boolean isStoreLinkDisplayed() {

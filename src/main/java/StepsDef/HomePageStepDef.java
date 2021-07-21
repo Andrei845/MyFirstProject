@@ -1,7 +1,6 @@
 package StepsDef;
 
 import core.DriverInitiator;
-import core.WaitUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +8,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 
-public class HomePageStepDef {
+public class HomePageStepDef{
 
     WebDriver driver = DriverInitiator.instantiateDriver();
     HomePage homePage = new HomePage(driver);
@@ -17,8 +16,8 @@ public class HomePageStepDef {
     @Given("^Home page is loaded, window is maximized and pop-ups are closed$")
     public void homePageIsLoadedWindowIsMaximizedAndPopUpsAreClosed(){
         homePage.openHomePage();
-        WaitUtils.waitUntilPageIsLoaded(driver);
-        driver.manage().window().maximize();
+        homePage.waitAndCheckIfPageIsLoaded();
+        homePage.maximizeWindow();
         homePage.closePopUps();
     }
 

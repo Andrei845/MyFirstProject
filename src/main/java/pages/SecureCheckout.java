@@ -4,6 +4,7 @@ import core.ClickWithJavaScript;
 import core.PageObject;
 import core.ScrollerAndClicker;
 import core.WaitUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,12 @@ public class SecureCheckout extends PageObject {
     public SecureCheckout(WebDriver driver) {
         super(driver);
     }
+
+    @FindBy(xpath = "//form[@name = 'searchAddressForm']/input[@type = 'search']")
+    private WebElement searchAddressInputField;
+
+    @FindBy(xpath = "//div[@class = 'search-address-data ui-menu-item-wrapper']")
+    private WebElement resultFromSearch;
 
     @FindBy(xpath = "//label[@for = 'addNewAddress']/span[@class = 'c-radiobtn__check']")
     private WebElement addNewAddressRadioButton;
@@ -114,8 +121,28 @@ public class SecureCheckout extends PageObject {
     @FindBy(xpath = "//div[contains(@class, 'add-new-address')]")
     private WebElement addressForm;
 
+    @FindBy(xpath = "//ol[@class = 'c-breadcrumb__list show-children--all']//a")
+    private WebElement backToCart;
+
     public void waitAddressFormToBeDisplayed(){
         WaitUtils.waitUntilElementIsDisplayed(addressForm);
+    }
+
+    public void typeInSearchAddressInputField(String search){
+        searchAddressInputField.click();
+        searchAddressInputField.sendKeys(search);
+    }
+
+    public WebElement getResultFromSearch(){
+        WaitUtils.waitUntilElementIsDisplayed(resultFromSearch);
+        return resultFromSearch;
+    }
+
+    public void chooseTheAccordingAddress(String addressFragment){
+        while(!this.getResultFromSearch().getText().contains(addressFragment)) {
+            searchAddressInputField.sendKeys(Keys.ARROW_DOWN);
+        }
+        resultFromSearch.click();
     }
 
     public void clickAddNewAddress() {
@@ -197,6 +224,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickNextButtonFromShippingAddress() {
+        WaitUtils.waitUntilElementIsClickable(nextButtonFromShippingAddress);
         ScrollerAndClicker.scrollAndClick(nextButtonFromShippingAddress);
     }
 
@@ -252,5 +280,8 @@ public class SecureCheckout extends PageObject {
         return placeOrderButton.isEnabled();
     }
 
+    public void clickBackToCartButton(){
+        backToCart.click();
+    }
 
 }

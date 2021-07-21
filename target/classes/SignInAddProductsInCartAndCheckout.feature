@@ -18,7 +18,7 @@ Feature: Sing in and add proceed to checkout with two different products from St
     Then The pop-up Add to cart is closed
     And User adds a second product in the cart
     Then The pop-up Add to cart is displayed
-    When Click on View cart from the pop-up Add to cart
+    When User clicks on View cart from the pop-up Add to cart
     Then Check if According page is loaded
     When User clicks on the Checkout button
     Then Accounts for checkout page is loaded

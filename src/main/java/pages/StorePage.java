@@ -9,7 +9,6 @@ import java.util.List;
 
 public class StorePage extends PageObject {
 
-    @FindBy(xpath = "//li[@class = 'product__list--item']")
     private List<StoreProgramFragment> storeProgramFragmentList;
 
     @FindBy(xpath = "//div[@class= 'pagination-bar-results']/span")
@@ -43,7 +42,8 @@ public class StorePage extends PageObject {
 
     private StoreProgramFragment getProgramFragmentByTitle(String title){
         System.out.println("driver = "+driver);
-        System.out.println("storeProgramFragmentList = "+storeProgramFragmentList);
+        System.out.println("List = "+ storeProgramFragmentList);
+
         return storeProgramFragmentList
                 .stream()
                 .filter(iterator -> iterator.getTitle().getText().trim().equals(title))

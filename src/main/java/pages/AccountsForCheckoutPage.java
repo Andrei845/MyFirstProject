@@ -2,9 +2,13 @@ package pages;
 
 import core.PageObject;
 import core.ScrollerAndClicker;
+import core.WaitUtils;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static core.Utils.ACCOUNTS_FOR_CHECKOUT_PAGE_URL;
 
 public class AccountsForCheckoutPage extends PageObject {
 
@@ -32,6 +36,11 @@ public class AccountsForCheckoutPage extends PageObject {
     public AccountsForCheckoutPage(WebDriver driver) {
 
         super(driver);
+    }
+
+    public void waitAndCheckIfPageIsLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on the accounts for checkout page", ACCOUNTS_FOR_CHECKOUT_PAGE_URL, driver.getCurrentUrl());
     }
 
     public void clickMyAccountRadioBox() {

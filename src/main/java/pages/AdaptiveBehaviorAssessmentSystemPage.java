@@ -3,10 +3,13 @@ package pages;
 import core.PageObject;
 import core.ScrollerAndClicker;
 import core.WaitUtils;
+import org.junit.Assert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static core.Utils.ABAS_PAGE_URL;
 
 public class AdaptiveBehaviorAssessmentSystemPage extends PageObject {
 
@@ -34,6 +37,11 @@ public class AdaptiveBehaviorAssessmentSystemPage extends PageObject {
 
     @FindBy(xpath = "//div[@id = 'cboxContent']/button[@id = 'cboxClose']")
     private WebElement popUpAddToCartCloser;
+
+    public void waitAndCheckIfPageIsLoadedLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on the program page ABAS3", ABAS_PAGE_URL, driver.getCurrentUrl());
+    }
 
     public void clickAllProductsFormatCard() {
 

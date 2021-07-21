@@ -10,7 +10,6 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User clicks on My Account button
     And User clicks on Address Book link
     Then Address book page is loaded
-    And User deletes any addresses present here, if any
     And User clicks on Add Address link
     Then Add Address page is loaded
     And Address Form is displayed
@@ -27,6 +26,40 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User types phone number "201-555-0123 " in the field Phone number(optional)
     And User clicks on Save button
     Then Address book page is loaded
+    And User clicks on the link Store
+    Then Store page is loaded
+    When User clicks on "Adaptive Behavior Assessment System | Third Edition (ABAS-3)" program link
+    Then The program page is displayed
+    And User closes the feedback pop-up
+    When User adds a product in the cart
+    Then The pop-up Add to cart is displayed
+    When User clicks X from the pop-up
+    Then The pop-up Add to cart is closed
+    And User adds a second product in the cart
+    Then The pop-up Add to cart is displayed
+    When User clicks on View cart from the pop-up Add to cart
+    Then Check if According page is loaded
+    And User modifies the quantity of the product to "3"
+    When User clicks on the Checkout button
+    Then Accounts for checkout page is loaded
+    When User clicks on My Account radio button
+    And User clicks on the button Continue
+    Then Secure checkout page is loaded
+    And User types "Phoenix, AZ, 85006" in the search input field
+    And User chooses from the results the address that matches "Phoenix, AZ, 85006"
+    And User clicks on Next button from the form addressForm
+    And User clicks on the Next button
+    And User types valid details in the form Payment and billing
+    And User checks the checkbox privacy policy and terms of use
+    Then The button Place order becomes enabled
+    When User clicks on button Back to cart
+    Then Check if According page is loaded
+    And User removes all the products remained in cart
+    And User clicks on My Account button from Cart page
+    And User clicks on Address Book link from Cart page
+    Then Address book page is loaded
+    And User deletes all the addresses displayed on the page
+
 
 
 

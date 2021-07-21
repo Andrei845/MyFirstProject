@@ -14,8 +14,6 @@ public class AddAddressStepDef {
 
     @Then("Add Address page is loaded")
     public void addAddressPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
-        Assert.assertEquals("You are not on the page Add Address!","https://www.pearsonassessments.com/store/usassessments/en/my-account/add-address", driver.getCurrentUrl());
         addressPage.clickFeedBackPopUpCloser();
     }
 

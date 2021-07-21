@@ -14,7 +14,7 @@ public class SignInTests implements Utils {
 
     @Before
     public void loadPageAndClosePopUps(){
-        driver.get(SIGN_IN_REGISTER_URL);
+        driver.get(SIGN_IN_REGISTER_PAGE_URL);
         driver.manage().window().maximize();
         signInRegisterPage.clickClosePopUp();
         signInRegisterPage.clickClosePopUpOurStores();

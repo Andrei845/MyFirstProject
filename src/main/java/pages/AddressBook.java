@@ -2,11 +2,14 @@ package pages;
 
 import core.PageObject;
 import core.WaitUtils;
+import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static core.Utils.ADDRESS_BOOK_PAGE_URL;
 
 public class AddressBook extends PageObject {
 
@@ -25,6 +28,11 @@ public class AddressBook extends PageObject {
 
     @FindBy(xpath = "//div[@id = 'mcxContainer']//a[@id = 'declineSurvey']")
     private WebElement feedbackPopUpCloser;
+
+    public void waitAndCheckIfPageIsLoaded(){
+        WaitUtils.waitUntilPageIsLoaded(driver);
+        Assert.assertEquals("You are not on the address book page", ADDRESS_BOOK_PAGE_URL, driver.getCurrentUrl());
+    }
 
     public void clickOnAddressLink(){
         addAddressLink.click();
