@@ -15,7 +15,7 @@ public class AdaptiveBehaviorAssessmentSystemPageStepDef {
 
     @Then("^The program page is displayed$")
     public void theProgramPageIsDisplayed() {
-        abas.waitAndCheckIfPageIsLoadedLoaded();
+        abas.waitAndCheckIfPageIsLoaded();
     }
 
     @And("^User closes the feedback pop-up$")
@@ -23,10 +23,10 @@ public class AdaptiveBehaviorAssessmentSystemPageStepDef {
         abas.clickFeedbackPopUpCloser();
     }
 
-    @When("User adds a product in the cart")
-    public void userAddsAProductInTheCart() {
-        abas.clickAllProductsFormatCard();
-        abas.clickAddToCartFirstProduct();
+    @When("^User clicks on product tile \"(.*)\" and adds the product \"(.*)\" to the cart$")
+    public void userAddsAProductInTheCart(String name, String isbn) {
+        abas.clickOnTheTile(name);
+        abas.clickOnAddToCart(isbn);
     }
 
     @Then("The pop-up Add to cart is displayed")
@@ -44,9 +44,9 @@ public class AdaptiveBehaviorAssessmentSystemPageStepDef {
         Assert.assertTrue("Add to cart pop-up is still displayed", abas.addToCartPopUpWasClosed());
     }
 
-    @When("User adds a second product in the cart")
-    public void userAddsASecondProductInTheCart() {
-        abas.clickAddToCartPenultimateProduct();
+    @When("^User adds in the cart the product with isbn \"(.*)\"$")
+    public void userAddsASecondProductInTheCart(String isbn) {
+        abas.clickOnAddToCart(isbn);
     }
 
     @When("User clicks on View cart from the pop-up Add to cart")

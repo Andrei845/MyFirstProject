@@ -1,7 +1,7 @@
 package pages;
 
 import core.PageObject;
-import core.WaitUtils;
+import core.Wait;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -30,7 +30,7 @@ public class AddressBook extends PageObject {
     private WebElement feedbackPopUpCloser;
 
     public void waitAndCheckIfPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the address book page", ADDRESS_BOOK_PAGE_URL, driver.getCurrentUrl());
     }
 
@@ -42,16 +42,16 @@ public class AddressBook extends PageObject {
         try {
             while (addressBookCleaner.isDisplayed()) {
                 addressBookCleaner.click();
-                WaitUtils.waitUntilElementIsClickable(deleteButtonForAddress);
+                Wait.waitUntilElementIsClickable(deleteButtonForAddress);
                 deleteButtonForAddress.click();
-                WaitUtils.waitUntilElementIsDisplayed(addressBookCleaner, 1);
+                Wait.waitUntilElementIsDisplayed(addressBookCleaner, 1);
             }
         }catch(NoSuchElementException | TimeoutException ignored){ }
     }
 
     public void clickOnFeedBackPopUpCloser(){
         try{
-            WaitUtils.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
+            Wait.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
             feedbackPopUpCloser.click();
         } catch(TimeoutException ignored){}
     }

@@ -1,7 +1,7 @@
 package StepsDef;
 
 import core.DriverInitiator;
-import core.WaitUtils;
+import core.Wait;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +16,7 @@ public class SecureCheckoutStepDef {
     
     @Then("Secure checkout page is loaded")
     public void userIsRedirectedToSecureCheckoutPage() {
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the secure checkout page","https://www.pearsonassessments.com/store/usassessments/en/checkout/multi/delivery-address/add", driver.getCurrentUrl());
     }
 

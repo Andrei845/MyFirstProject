@@ -2,7 +2,7 @@ package pages;
 
 import core.PageObject;
 import core.ScrollerAndClicker;
-import core.WaitUtils;
+import core.Wait;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +39,7 @@ public class AccountsForCheckoutPage extends PageObject {
     }
 
     public void waitAndCheckIfPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the accounts for checkout page", ACCOUNTS_FOR_CHECKOUT_PAGE_URL, driver.getCurrentUrl());
     }
 

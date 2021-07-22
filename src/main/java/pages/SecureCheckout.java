@@ -3,7 +3,7 @@ package pages;
 import core.ClickWithJavaScript;
 import core.PageObject;
 import core.ScrollerAndClicker;
-import core.WaitUtils;
+import core.Wait;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,9 +28,6 @@ public class SecureCheckout extends PageObject {
     @FindBy(xpath = "//div[@class = 'c-select-wrapper']/select[@id = 'address.country']")
     private WebElement countryDropdown;
 
-    @FindBy(xpath = "//div[@class = 'c-select-wrapper']//option[@value = 'AR']")
-    private WebElement optionFromCountryDropdown;
-
     @FindBy(xpath = "//div[@class = 'c-select-wrapper']/select[@id = 'address.title']")
     private WebElement titleDropdown;
 
@@ -39,9 +36,6 @@ public class SecureCheckout extends PageObject {
 
     @FindBy(xpath = "//input[@id ='address.firstName']")
     private WebElement firstNameInputField;
-
-    @FindBy(xpath = "//div[@class = 'form-group has-error']/input[@id ='address.firstName']")
-    private WebElement firstNameErrorInputField;
 
     @FindBy(xpath = "//input[@id ='address.surname']")
     private WebElement lastNameInputField;
@@ -125,7 +119,7 @@ public class SecureCheckout extends PageObject {
     private WebElement backToCart;
 
     public void waitAddressFormToBeDisplayed(){
-        WaitUtils.waitUntilElementIsDisplayed(addressForm);
+        Wait.waitUntilElementIsDisplayed(addressForm);
     }
 
     public void typeInSearchAddressInputField(String search){
@@ -134,7 +128,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public WebElement getResultFromSearch(){
-        WaitUtils.waitUntilElementIsDisplayed(resultFromSearch);
+        Wait.waitUntilElementIsDisplayed(resultFromSearch);
         return resultFromSearch;
     }
 
@@ -156,7 +150,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public void waitFormToBeRefreshed(){
-        WaitUtils.waitUntilRefreshed(addressForm);
+        Wait.waitUntilRefreshed(addressForm);
     }
 
     public void clickTitleDropdown() {
@@ -164,7 +158,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickOptionFromTitleDropdown() {
-        WaitUtils.waitUntilElementIsDisplayed(optionFromTitleDropdown);
+        Wait.waitUntilElementIsDisplayed(optionFromTitleDropdown);
         optionFromTitleDropdown.click();
     }
 
@@ -224,12 +218,12 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickNextButtonFromShippingAddress() {
-        WaitUtils.waitUntilElementIsClickable(nextButtonFromShippingAddress);
+        Wait.waitUntilElementIsClickable(nextButtonFromShippingAddress);
         ScrollerAndClicker.scrollAndClick(nextButtonFromShippingAddress);
     }
 
     public void clickNextButtonFromShippingMethod() {
-        WaitUtils.waitUntilElementIsDisplayed(nextButtonFromShippingMethod);
+        Wait.waitUntilElementIsDisplayed(nextButtonFromShippingMethod);
         nextButtonFromShippingMethod.click();
     }
 
@@ -243,7 +237,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickOptionFromExpiryMonthDropdown() {
-        WaitUtils.waitUntilElementIsDisplayed(optionFromExpiryMonthDropdown);
+        Wait.waitUntilElementIsDisplayed(optionFromExpiryMonthDropdown);
         optionFromExpiryMonthDropdown.click();
     }
 
@@ -252,7 +246,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public void clickOptionFromExpiryYearDropdown() {
-        WaitUtils.waitUntilElementIsDisplayed(optionFromExpiryYearDropdown);
+        Wait.waitUntilElementIsDisplayed(optionFromExpiryYearDropdown);
         optionFromExpiryYearDropdown.click();
     }
 
@@ -266,7 +260,7 @@ public class SecureCheckout extends PageObject {
     }
 
     public boolean isFormShippingAddressDisplayed() {
-        WaitUtils.waitUntilElementIsDisplayed(formShippingAddress);
+        Wait.waitUntilElementIsDisplayed(formShippingAddress);
         return formShippingAddress.isDisplayed();
     }
 
@@ -276,7 +270,7 @@ public class SecureCheckout extends PageObject {
 
     public boolean isClickablePlaceOrderButton() {
         ScrollerAndClicker.scrollToElement(placeOrderButton);
-        WaitUtils.waitUntilElementIsClickable(placeOrderButton);
+        Wait.waitUntilElementIsClickable(placeOrderButton);
         return placeOrderButton.isEnabled();
     }
 

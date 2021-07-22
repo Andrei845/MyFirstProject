@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import static core.Utils.DEFAULT_TIME_TO_WAIT;
 
-public abstract class WaitUtils {
+public abstract class Wait {
 
     private static final WebDriver driver = DriverInitiator.instantiateDriver();
 

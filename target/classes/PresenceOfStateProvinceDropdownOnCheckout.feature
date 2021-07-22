@@ -12,7 +12,7 @@ Feature: Sing in and add proceed to checkout with two different products from St
     When User clicks on ABAS program link
     Then The program page is displayed
     And User closes the feedback pop-up
-    When User adds a product in the cart
+    When User clicks on product tile \"(.*)\" and adds the product \"(.*)\" to the cart
     Then The pop-up Add to cart is displayed
     When User clicks X from the pop-up
     Then The pop-up Add to cart is closed

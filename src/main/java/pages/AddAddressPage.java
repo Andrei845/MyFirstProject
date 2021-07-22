@@ -2,7 +2,7 @@ package pages;
 
 import core.DriverInitiator;
 import core.PageObject;
-import core.WaitUtils;
+import core.Wait;
 import org.junit.Assert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -62,12 +62,12 @@ public class AddAddressPage extends PageObject {
     private WebElement saveButton;
 
     public void waitAndCheckIfPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the page Add Address!", ADD_ADDRESS_PAGE_URL, driver.getCurrentUrl());
     }
 
     public boolean isFormShippingAddressDisplayed() {
-        WaitUtils.waitUntilElementIsDisplayed(formShippingAddress);
+        Wait.waitUntilElementIsDisplayed(formShippingAddress);
         return formShippingAddress.isDisplayed();
     }
 
@@ -119,13 +119,13 @@ public class AddAddressPage extends PageObject {
     }
 
     public void clickSaveButton(){
-        WaitUtils.waitUntilElementIsClickable(saveButton);
+        Wait.waitUntilElementIsClickable(saveButton);
         saveButton.click();
     }
 
     public void clickFeedBackPopUpCloser(){
         try {
-            WaitUtils.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
+            Wait.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
             feedbackPopUpCloser.click();
         } catch(TimeoutException ignored){ }
     }

@@ -12,11 +12,11 @@ Feature: Sing in and add proceed to checkout with two different products from St
     When User clicks on "Adaptive Behavior Assessment System | Third Edition (ABAS-3)" program link
     Then The program page is displayed
     And User closes the feedback pop-up
-    When User adds a product in the cart
+    When User clicks on product tile "All products" and adds the product "0158009177" to the cart
     Then The pop-up Add to cart is displayed
     When User clicks X from the pop-up
     Then The pop-up Add to cart is closed
-    And User adds a second product in the cart
+    And User adds in the cart the product with isbn "0158009169"
     Then The pop-up Add to cart is displayed
     When User clicks on View cart from the pop-up Add to cart
     Then Check if According page is loaded

@@ -1,7 +1,7 @@
 package pages;
 
 import core.PageObject;
-import core.WaitUtils;
+import core.Wait;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -62,7 +62,7 @@ public class SignInRegisterPage extends PageObject {
     }
 
     public void checkIfPageIsLoaded(){
-        WaitUtils.waitUntilPageIsLoaded(driver);
+        Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the Sign in/Register page", SIGN_IN_REGISTER_PAGE_URL, driver.getCurrentUrl());
     }
 
