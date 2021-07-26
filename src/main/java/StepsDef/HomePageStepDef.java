@@ -28,16 +28,17 @@ public class HomePageStepDef{
 
     @Then("^Home page is loaded$")
     public void checkIfHomePageIsLoaded(){
-        homePage.checkIfPageIsLoaded();
+        homePage.waitAndCheckIfPageIsLoaded();
     }
 
-    @And("^User clicks on the link Store$")
-    public void clickOnStoreLink(){
-        homePage.clickOnStoreLink();
+    @And("^User navigates to the Products by Acronym page$")
+    public void userNavigatesToProductByAcronym(){
+        homePage.goToTheProductList();
     }
 
     @And("User clicks on My Account button")
-    public void clickOnMyAccountButton(){
+    public void clickOnMyAccountButton() throws InterruptedException{
+        homePage.waitAndCheckIfPageIsLoaded();
         homePage.clickMyAccountButton();
     }
 

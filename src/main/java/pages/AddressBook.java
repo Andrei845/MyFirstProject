@@ -1,23 +1,25 @@
 package pages;
 
+import Fragments.AddressCardFragment;
+import core.GetBy;
 import core.PageObject;
 import core.Wait;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static core.Utils.ADDRESS_BOOK_PAGE_URL;
 
 public class AddressBook extends PageObject {
 
-    public AddressBook(WebDriver driver){
+    public AddressBook(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath ="//div[@class = 'col-md-12']//a[@class = 'c-sectionHeader__btn']")
+//    @FindBy(xpath = "//div[@class = 'col-md-12']//a[@class = 'c-sectionHeader__btn']")
+    @FindBy(xpath = "//button[@id = 'buttonAddAddress']")
     private WebElement addAddressLink;
 
     @FindBy(xpath = "//span[@class = 'action-links glyphicon glyphicon-remove']")
@@ -29,31 +31,43 @@ public class AddressBook extends PageObject {
     @FindBy(xpath = "//div[@id = 'mcxContainer']//a[@id = 'declineSurvey']")
     private WebElement feedbackPopUpCloser;
 
-    public void waitAndCheckIfPageIsLoaded(){
+    @FindBy(xpath = "//li[@class = 'address-card white-card ']")
+    private List<WebElement> listOfAddresses;
+
+    public void waitAndCheckIfPageIsLoaded() {
         Wait.waitUntilPageIsLoaded(driver);
         Assert.assertEquals("You are not on the address book page", ADDRESS_BOOK_PAGE_URL, driver.getCurrentUrl());
     }
 
-    public void clickOnAddressLink(){
+    public void clickOnAddressLink() {
         addAddressLink.click();
     }
 
-    public void deleteAllTheAddresses(){
+    public void deleteAllTheAddressesContaining(String toBeDeleted) {
+        By textInsideAddress = GetBy.getBy("textInsideAddress", AddressCardFragment.class);
+        By xToRemoveTheAddress = GetBy.getBy("xToRemoveTheAddress", AddressCardFragment.class);
+
         try {
-            while (addressBookCleaner.isDisplayed()) {
-                addressBookCleaner.click();
-                Wait.waitUntilElementIsClickable(deleteButtonForAddress);
-                deleteButtonForAddress.click();
-                Wait.waitUntilElementIsDisplayed(addressBookCleaner, 1);
+            while (true) {
+                listOfAddresses
+                        .stream()
+                        .filter(i -> i.findElement(textInsideAddress).getText().trim().contains(toBeDeleted))
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalStateException("")).findElement(xToRemoveTheAddress).click();
+                        deleteButtonForAddress.click();
             }
-        }catch(NoSuchElementException | TimeoutException ignored){ }
+
+        } catch (NoSuchElementException | IllegalStateException ignored) {
+        }
     }
 
-    public void clickOnFeedBackPopUpCloser(){
-        try{
+
+    public void clickOnFeedBackPopUpCloser() {
+        try {
             Wait.waitUntilElementIsDisplayed(feedbackPopUpCloser, 2);
             feedbackPopUpCloser.click();
-        } catch(TimeoutException ignored){}
+        } catch (TimeoutException ignored) {
+        }
     }
 
 }

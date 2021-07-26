@@ -33,7 +33,7 @@ public class CartPageStepDef {
     }
 
     @And("User clicks on My Account button from Cart page")
-    public void clickMyAccountButton() {
+    public void clickMyAccountButton() throws InterruptedException{
         cartPage.clickMyAccountCartPageButton();
     }
 

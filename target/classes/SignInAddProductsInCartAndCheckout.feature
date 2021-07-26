@@ -7,8 +7,8 @@ Feature: Sing in and add proceed to checkout with two different products from St
     When User types valid username, "andreiungureanu854" and password, "Pearson854"
     And User clicks on the sign in button
     Then Home page is loaded
-    And User clicks on the link Store
-    Then Store page is loaded
+    And User navigates to the Products by Acronym page
+    Then Products by Acronym page is loaded
     When User clicks on "Adaptive Behavior Assessment System | Third Edition (ABAS-3)" program link
     Then The program page is displayed
     And User closes the feedback pop-up

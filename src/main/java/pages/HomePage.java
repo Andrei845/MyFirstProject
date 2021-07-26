@@ -1,8 +1,6 @@
 package pages;
 
-import core.PageObject;
-import core.ScrollerAndClicker;
-import core.Wait;
+import core.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,20 +20,33 @@ public class HomePage extends PageObject {
     @FindBy(xpath = "//button[@class='pop-up-close']")
     private WebElement closePopUpOurStores;
 
-    @FindBy(xpath = "//div[@class = 'nav__right utility-nav--container']//a[@class = 'login-link ']")
+//   @FindBy(xpath = "//div[@class = 'nav__right utility-nav--container']//a[@class = 'login-link ']")
+    @FindBy(xpath = "//a[@href = '/store/usassessments/en/login']")
     private WebElement signInRegisterLink;
 
-    @FindBy(xpath = "//div[@class = 'nav__right utility-nav--container']//a[@title = 'Store']")
-    private WebElement storeLink;
+//    @FindBy(xpath = "//div[@class = 'nav__right utility-nav--container']//a[@title = 'Store']")
+//    private WebElement storeLink;
+
+    @FindBy(xpath = "//li[@class = 'dropdown  mega-nav-full-width']//a[@aria-controls= 'menu-item--assessmentssolutions']")
+    private WebElement assessmentsSolutionsLink;
 
     @FindBy(xpath = "//div[@id = 'mcxCenter']//a[@id = 'declineSurvey']")
     private WebElement feedBackPopUpCloser;
 
-    @FindBy(xpath = "//div[@class = 'header']//button[@class = 'js-context-switcher']")
+//    @FindBy(xpath = "//div[@class = 'header']//button[@class = 'js-context-switcher']")
+    @FindBy(xpath = "//button[@class = 'userNav__button jsUserSignedInIdentifier']/span")
     private WebElement myAccountButton;
 
-    @FindBy(xpath = "//div[@class = 'header']//div[@class = 'context-menu']//a[@title = 'Address Book']")
+//    @FindBy(xpath = "//div[@class = 'header']//div[@class = 'context-menu']//a[@title = 'Address Book']")
+    @FindBy(xpath = "//ul[@id= 'userNav']//a[@title= 'Address Book']")
     private WebElement addressBookLink;
+
+    @FindBy(xpath = "//ul[@id = 'mn-professionalassessments']//a[contains(@href, 'products/products-by-acronym')]")
+    private WebElement productAToZLink;
+
+
+    @FindBy(xpath = "//ul[@id= 'userNav']")
+    private WebElement menuDisplayedUnderMyAccountButton;
 
     public void openHomePage(){
         driver.get(HOME_PAGE_URL);
@@ -60,23 +71,20 @@ public class HomePage extends PageObject {
         ScrollerAndClicker.scrollAndClick(signInRegisterLink);
     }
 
-    public void checkIfPageIsLoaded(){
-        Wait.waitUntilPageIsLoaded(driver);
-        Assert.assertEquals("You are not on the Home page", HOME_PAGE_URL, driver.getCurrentUrl());
+    public void goToTheProductList(){
+        assessmentsSolutionsLink.click();
+        Wait.waitUntilElementIsDisplayed(productAToZLink);
+        productAToZLink.click();
     }
 
-    public void clickOnStoreLink(){
-        storeLink.click();
-    }
-
-    public void clickMyAccountButton(){
+    public void clickMyAccountButton() throws InterruptedException{
+        Thread.sleep(4000);
         myAccountButton.click();
     }
 
     public void clickOnAddressBookLink(){
+        Wait.waitUntilElementIsDisplayed(addressBookLink);
         addressBookLink.click();
     }
-
-
 
 }

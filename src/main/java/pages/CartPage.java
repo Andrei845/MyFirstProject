@@ -18,10 +18,10 @@ public class CartPage extends PageObject {
     @FindBy(xpath = "//div[@class = 'col-xs-12 col-sm-4 col-md-4 pull-right']/button[contains(@class,  'js-continue-checkout-button')]")
     private WebElement checkoutButton;
 
-    @FindBy(xpath = "//div[@class = 'col-sm-8 col-md-8']//button[@class = 'js-context-switcher']")
+    @FindBy(xpath = "//button[@class = 'userNav__button jsUserSignedInIdentifier']")
     private WebElement myAccountCartPageButton;
 
-    @FindBy(xpath = "//div[@class = 'js-context-account-menu context-account-menu']//a[@title= 'Address Book']")
+    @FindBy(xpath = "//a[@href = '/store/usassessments/en/addresses']")
     private WebElement addressBookLink;
 
     @FindBy(xpath = "//li[@class = 'item__list--item--wrapper']")
@@ -68,25 +68,15 @@ public class CartPage extends PageObject {
         ScrollerAndClicker.scrollAndClick(checkoutButton);
     }
 
-    public void clickMyAccountCartPageButton() {
+    public void clickMyAccountCartPageButton() throws InterruptedException {
+        Thread.sleep(4000);
         myAccountCartPageButton.click();
     }
 
     public void clickAddressBookLink() {
+        Wait.waitUntilElementIsDisplayed(addressBookLink);
         addressBookLink.click();
     }
-
-
-//    public void removeAllProductsFromCart(){
-//        try{
-//            while(xToDeleteProductFromCart.isDisplayed()){
-//                xToDeleteProductFromCart.click();
-//                Wait.waitUntilElementIsDisplayed(removeProductFromCartLink);
-//                removeProductFromCartLink.click();
-//                Wait.waitUntilElementIsDisplayed(xToDeleteProductFromCart, 3);
-//            }
-//        } catch (NoSuchElementException | TimeoutException ignored){}
-//    }
 
     public void removeAllProductsFromCart() {
         By xToRemoveTheProduct = GetBy.getBy("xToRemoveTheProduct", ProductFromCartFragment.class);

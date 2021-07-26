@@ -56,25 +56,20 @@ public abstract class Wait {
     }
 
 
-
-    public static void waitUntilPageIsLoaded(WebDriver webDriver) {
-        if (waitForJs(webDriver)) {
-            waitForJQuery(webDriver);
-        }
+    public static boolean waitUntilPageIsLoaded(WebDriver webDriver) {
+        return waitForJs(webDriver) && waitForJQuery(webDriver);
     }
 
     private static boolean waitForJs(WebDriver webDriver) {
         WebDriverWait wait = new WebDriverWait(webDriver, Utils.DEFAULT_TIME_TO_WAIT);
         return wait.until((ExpectedCondition<Boolean>) driver -> ((JavascriptExecutor) driver).executeScript(
-                "return document.readyState"
-        ).equals("complete"));
+                "return document.readyState").equals("complete"));
     }
 
-    private static void waitForJQuery(WebDriver webDriver) {
+    private static boolean waitForJQuery(WebDriver webDriver) {
         WebDriverWait wait = new WebDriverWait(webDriver, Utils.DEFAULT_TIME_TO_WAIT);
-        wait.until((ExpectedCondition<Boolean>) driver -> (Long) ((JavascriptExecutor) driver).executeScript(
-                "return jQuery.active"
-        ) == 0);
+        return wait.until((ExpectedCondition<Boolean>) driver -> (Long) ((JavascriptExecutor) driver).executeScript(
+                "return jQuery.active") == 0);
     }
 
 }

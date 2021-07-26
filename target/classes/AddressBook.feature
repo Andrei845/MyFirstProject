@@ -26,7 +26,7 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User types phone number "201-555-0123 " in the field Phone number(optional)
     And User clicks on Save button
     Then Address book page is loaded
-    And User clicks on the link Store
+    And User navigates to the Products by Acronym page
     Then Store page is loaded
     When User clicks on "Adaptive Behavior Assessment System | Third Edition (ABAS-3)" program link
     Then The program page is displayed
@@ -59,7 +59,7 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User clicks on My Account button from Cart page
     And User clicks on Address Book link from Cart page
     Then Address book page is loaded
-    And User deletes all the addresses displayed on the page
+    And User deletes all the addresses containing "Phoenix" on the page
 
 
 

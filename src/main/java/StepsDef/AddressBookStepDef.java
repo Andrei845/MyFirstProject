@@ -16,9 +16,9 @@ public class AddressBookStepDef {
         addressBook.waitAndCheckIfPageIsLoaded();
     }
 
-    @And("^User deletes all the addresses displayed on the page$")
-    public void removeDisplayedAddresses(){
-        addressBook.deleteAllTheAddresses();
+    @And("^User deletes all the addresses containing \"(.*)\" on the page$")
+    public void removeDisplayedAddresses(String toBeDeleted){
+        addressBook.deleteAllTheAddressesContaining(toBeDeleted);
         addressBook.clickOnFeedBackPopUpCloser();
     }
 
