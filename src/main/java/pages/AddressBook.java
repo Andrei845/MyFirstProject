@@ -18,7 +18,6 @@ public class AddressBook extends PageObject {
         super(driver);
     }
 
-//    @FindBy(xpath = "//div[@class = 'col-md-12']//a[@class = 'c-sectionHeader__btn']")
     @FindBy(xpath = "//button[@id = 'buttonAddAddress']")
     private WebElement addAddressLink;
 
@@ -39,7 +38,7 @@ public class AddressBook extends PageObject {
         Assert.assertEquals("You are not on the address book page", ADDRESS_BOOK_PAGE_URL, driver.getCurrentUrl());
     }
 
-    public void clickOnAddressLink() {
+    public void clickOnAddAddressLink() {
         addAddressLink.click();
     }
 

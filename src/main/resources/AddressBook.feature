@@ -2,7 +2,7 @@ Feature: Add new address in Address Book and do checkout using the new address
 
   Scenario: User is on home page
     Given Home page is loaded, window is maximized and pop-ups are closed
-    When User clicks on the Sign in/Register link
+    When User clicks on the Sign in link
     Then Sign in/Register page is loaded
     When User types valid username, "andreiungureanu854" and password, "Pearson854"
     And User clicks on the sign in button
@@ -26,8 +26,8 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User types phone number "201-555-0123 " in the field Phone number(optional)
     And User clicks on Save button
     Then Address book page is loaded
-    And User navigates to the Products by Acronym page
-    Then Store page is loaded
+    And User navigates to "Behavior"
+    Then Products by Acronym page is loaded
     When User clicks on "Adaptive Behavior Assessment System | Third Edition (ABAS-3)" program link
     Then The program page is displayed
     And User closes the feedback pop-up
@@ -59,7 +59,7 @@ Feature: Add new address in Address Book and do checkout using the new address
     And User clicks on My Account button from Cart page
     And User clicks on Address Book link from Cart page
     Then Address book page is loaded
-    And User deletes all the addresses containing "Phoenix" on the page
+    And User deletes all the addresses containing "Andrei" on the page
 
 
 

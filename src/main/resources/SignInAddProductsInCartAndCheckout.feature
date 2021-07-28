@@ -2,7 +2,7 @@ Feature: Sing in and add proceed to checkout with two different products from St
 
   Scenario: User is on the home page
     Given Home page is loaded, window is maximized and pop-ups are closed
-    When User clicks on the Sign in/Register link
+    When User clicks on the Sign in link
     Then Sign in/Register page is loaded
     When User types valid username, "andreiungureanu854" and password, "Pearson854"
     And User clicks on the sign in button
@@ -34,7 +34,7 @@ Feature: Sing in and add proceed to checkout with two different products from St
     And User clicks on the input field Last name and types "Ungureanu"
     And User clicks on the input field Street address and types "Street 21"
     And User clicks on the input field City and types 'Seattle'
-    And User chooses an option from State/Province dropdown
+    And User chooses "Washington" from State/Province dropdown
     And User types "98101" in the Postal Code input field
     And User clicks on the input field Email address(optional) and types "andreiungureanu854@gmail.com"
     And User types valid phone number "201-555-0123 " in the field Phone number(optional)

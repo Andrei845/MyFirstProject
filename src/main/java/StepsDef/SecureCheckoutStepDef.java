@@ -77,9 +77,9 @@ public class SecureCheckoutStepDef {
         secureCheckout.clickCityInputFieldAndType(city);
     }
 
-    @And("^User chooses an option from State\\/Province dropdown$")
-    public void userChoosesAnOptionFromStateProvinceDropdown() {
-        secureCheckout.chooseWashingtonFromStateProvinceDropdown();
+    @And("^User chooses \"(.*)\" from State\\/Province dropdown$")
+    public void userChoosesAnOptionFromStateProvinceDropdown(String state) {
+        secureCheckout.chooseWashingtonFromStateProvinceDropdown(state);
     }
 
     @And("^User types \"(.*)\" in the Postal Code input field$")

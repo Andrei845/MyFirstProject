@@ -67,9 +67,6 @@ public class SecureCheckout extends PageObject {
     @FindBy(xpath = "//button[@id = 'addressSubmit']")
     private WebElement nextButtonFromShippingAddress;
 
-    @FindBy(xpath = "//option[@value = 'US-WA']")
-    private WebElement optionFromStateProvinceDropdown;
-
     @FindBy(xpath = "//option[@value = 'AW']")
     private WebElement arubaOption;
 
@@ -145,7 +142,6 @@ public class SecureCheckout extends PageObject {
 
     public void clickOptionFromCountryDropdown(String country){
         Select countryDrop = new Select(countryDropdown);
-//        arubaOption.click();
         countryDrop.selectByVisibleText(country);
     }
 
@@ -197,8 +193,9 @@ public class SecureCheckout extends PageObject {
         cityInputField.sendKeys(cityName);
     }
 
-    public void chooseWashingtonFromStateProvinceDropdown(){
-        optionFromStateProvinceDropdown.click();
+    public void chooseWashingtonFromStateProvinceDropdown(String state){
+        Select select = new Select(stateProvinceDropdown);
+        select.selectByVisibleText(state);
     }
 
     public void clickZipCodeAndType(String zip) {

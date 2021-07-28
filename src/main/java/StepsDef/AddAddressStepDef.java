@@ -56,7 +56,7 @@ public class AddAddressStepDef {
         addressPage.insertCity(city);
     }
 
-    @And("^User chooses \"(.*)\" from State/Province dropdown$")
+    @And("^User chooses the option \"(.*)\" from State/Province dropdown$")
     public void choseStateProvince(String state){
         addressPage.selectStateProvince(state);
     }

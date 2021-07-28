@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 
 public class HomePageStepDef{
-
     WebDriver driver = DriverInitiator.instantiateDriver();
     HomePage homePage = new HomePage(driver);
 
@@ -21,7 +20,7 @@ public class HomePageStepDef{
         homePage.closePopUps();
     }
 
-    @When("^User clicks on the Sign in/Register link$")
+    @When("^User clicks on the Sign in link$")
     public void userClicksOnSignInRegisterLink(){
         homePage.clickOnSignInRegisterLink();
     }
@@ -31,13 +30,13 @@ public class HomePageStepDef{
         homePage.waitAndCheckIfPageIsLoaded();
     }
 
-    @And("^User navigates to the Products by Acronym page$")
-    public void userNavigatesToProductByAcronym(){
-        homePage.goToTheProductList();
+    @And("^User navigates to \"(.*)\"$")
+    public void userNavigatesToProductByAcronym(String name) throws InterruptedException{
+        homePage.goToTheLinkFromAssessmentSolution(name);
     }
 
     @And("User clicks on My Account button")
-    public void clickOnMyAccountButton() throws InterruptedException{
+    public void clickOnMyAccountButton(){
         homePage.waitAndCheckIfPageIsLoaded();
         homePage.clickMyAccountButton();
     }
@@ -45,5 +44,10 @@ public class HomePageStepDef{
     @And("User clicks on Address Book link")
     public void clickOnAddressBookLink(){
         homePage.clickOnAddressBookLink();
+    }
+
+    @And("User clicks on Qualifications link")
+    public void userClicksOnQualificationsLink(){
+        homePage.clickQualificationsLink();
     }
 }

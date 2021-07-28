@@ -1,7 +1,6 @@
 package StepsDef;
 
 import core.DriverInitiator;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -18,10 +17,10 @@ public class AdaptiveBehaviorAssessmentSystemPageStepDef {
         abas.waitAndCheckIfPageIsLoaded();
     }
 
-    @And("^User closes the feedback pop-up$")
-    public void userClosesTheFeedbackPopUp(){
-        abas.clickFeedbackPopUpCloser();
-    }
+//    @And("^User closes the feedback pop-up$")
+//    public void userClosesTheFeedbackPopUp(){
+//        abas.clickFeedbackPopUpCloser();
+//    }
 
     @When("^User clicks on product tile \"(.*)\" and adds the product \"(.*)\" to the cart$")
     public void userAddsAProductInTheCart(String name, String isbn) {

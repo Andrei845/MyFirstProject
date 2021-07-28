@@ -1,10 +1,7 @@
 package pages;
 
 import Fragments.ProductFromCartFragment;
-import core.GetBy;
-import core.PageObject;
-import core.ScrollerAndClicker;
-import core.Wait;
+import core.*;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +15,7 @@ public class CartPage extends PageObject {
     @FindBy(xpath = "//div[@class = 'col-xs-12 col-sm-4 col-md-4 pull-right']/button[contains(@class,  'js-continue-checkout-button')]")
     private WebElement checkoutButton;
 
-    @FindBy(xpath = "//button[@class = 'userNav__button jsUserSignedInIdentifier']")
+    @FindBy(xpath = "//button[@class = 'userNav__button jsUserSignedInIdentifier']/span")
     private WebElement myAccountCartPageButton;
 
     @FindBy(xpath = "//a[@href = '/store/usassessments/en/addresses']")
@@ -68,14 +65,12 @@ public class CartPage extends PageObject {
         ScrollerAndClicker.scrollAndClick(checkoutButton);
     }
 
-    public void clickMyAccountCartPageButton() throws InterruptedException {
-        Thread.sleep(4000);
-        myAccountCartPageButton.click();
+    public void clickMyAccountCartPageButton() {
+        ClickWithJavaScript.clickElement(myAccountCartPageButton);
     }
 
     public void clickAddressBookLink() {
-        Wait.waitUntilElementIsDisplayed(addressBookLink);
-        addressBookLink.click();
+        ClickWithJavaScript.clickElement(addressBookLink);
     }
 
     public void removeAllProductsFromCart() {

@@ -24,6 +24,6 @@ public class AddressBookStepDef {
 
     @And("^User clicks on Add Address link$")
     public void userClicksOnAddAddressLink(){
-        addressBook.clickOnAddressLink();
+        addressBook.clickOnAddAddressLink();
     }
 }

@@ -13,7 +13,4 @@ public class ProductFromProgramPageFragment {
 
     @FindBy(xpath = ".//button[@data-modal-title = 'Add to cart']")
     public WebElement addToCartButton;
-
-
-
 }
